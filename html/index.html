@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos.css" />
+    <script src="../js/Vue3.js"></script>
+    <title>PROPS EN  VUE</title>
+</head>
+<body>
+    <header>
+		<h1>Fruteria "CHERRY"</h1>
+    </header>
+    
+    <section id="seccion">
+        <article>
+          <table>
+            <tr>
+              <th colspan="4"> Frutas: </th>
+            </tr>
+            <tr v-for="(fruta, index) in frutas" :class="{fondo:fruta.cantidad}">
+             <td >
+              <button @click="fruta.cantidad++">+</button>
+              <input type="text" v-model.number="fruta.cantidad">
+              <button :disabled="fruta.cantidad==0" @click="fruta.cantidad--">-</button>
+             </td>
+             <td>{{fruta.nombre }}</td>
+
+             <td>${{ fruta.precioUnitario }}</td>
+             <td>${{ montoFruta(index) }}</td>
+            </tr>
+
+
+
+
+            <tr>
+              <td colspan="3" id="titulos">
+                <h4>Subtotal</h4>
+                <h4>IVA</h4>
+                <h4>Total</h4>
+              </td>
+            
+              <td id="totales">
+                  <h4>${{ subtotal.toFixed(2) }}</h4>
+                  <h4>${{ ivaAmount.toFixed(2) }}</h4>
+                  <h4>${{ total.toFixed(2) }}</h4>
+              </td>
+          </tr>
+          
+
+          </table>
+        </article>
+
+
+
+        <fieldset class="col-6">
+          <legend>Nueva Fruta</legend>
+          Nombre:
+          <input v-model="nuevaFruta" type="text">
+          Cantidad:
+          <input v-model.number="nuevaCantidad" type="number">
+          Precio:
+          <input v-model.number="nuevoPrecio" type="number" >
+          <button @click="agregar()">Agregar</button>
+
+        </fieldset>
+        
+
+    </section>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
